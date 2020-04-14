@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Website</title>
-</head>
+{% block content %}
+<h1>Members Database</h1>
+{% for member in all_members %}
+<p>{{member.last_name}}</p>
+<p>{{member.email}}</p>
+<p>{{member.age}}</p>
+<br />
+{% endfor %}
 
-<body>
-  <h1>Members Database</h1>
-  {% for member in all_members %}
-  <p>{{member.last_name}}</p>
-  <p>{{member.email}}</p>
-  <p>{{member.age}}</p>
-  <br />
-  {% endfor %}
-</body>
-
-</html>
+{%endblock%}
