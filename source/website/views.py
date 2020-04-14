@@ -1,7 +1,7 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Member
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    all_members = Member.objects.all
+    return render(request, 'home.html', {'all_members': all_members})
