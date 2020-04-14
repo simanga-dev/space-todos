@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Member
+from .forms import MemberForm
 
 
 def home(request):
@@ -8,4 +9,11 @@ def home(request):
 
 
 def join(request):
-    return render(request, 'join.html', {})
+    if request.method == "POST":
+        form = MemberForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            all_members = Member.objects.all
+            return render(request, 'home.html', {'all_members': all_members})
+    else:
+        return render(request, 'join.html', {})
