@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin-top: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url(../fonts/Open_Sans/OpenSans-Regular.ttf);
+}
+
+:root {
+  --bg-color: rgba(16, 24, 47, 1);
+  --fg-color: rgba(29, 39, 68, 1);
+  --white: rgba(239, 239, 239);
+  --accent-1: rgba(38, 127, 255, 1);
+}
+
+body {
+  font-family: OpenSans, Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--white);
+}

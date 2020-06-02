@@ -1,15 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% block css %} {% endblock %}
+    <title>Todo-List | {% block title %} {% endblock %}</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List {% block tittle %} {% endblock %}</title>
-</head>
-
-<body>
+  <body>
     {% block content %}
+    <!-- main content of the page -->
     {% endblock %}
-</body>
 
+    <!-- link to javascrit -->
+    <script src="{% static 'js/base.js' %}" />
+    {% block js %} {% endblock %}
+  </body>
 </html>
