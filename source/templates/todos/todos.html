@@ -1,7 +1,49 @@
-{% extends 'base.html' %}
-
+{% extends 'base.html' %}{% load static %}
+<!--  -->
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/todos.css' %}" />
+{% endblock %}
+<!-- main content of the page-->
 {% block content %}
+<main class="container">
 
-<p>This, is the main page of todos app</p>
+    <!-- Todo form -->
+  <div class="todo-form">
+    <form method="POST" action="">
+      {% csrf_token%}
+      <input type="text" name="title" placeholder="Todo Tittle" />
+      <textarea
+        name="description"
+        placeholder="Description of todos"
+        cols="30"
+        rows="10"
+      ></textarea>
+      <button type="submit">Add</button>
+    </form>
+  </div>
 
+
+  <!-- A list of all the todos  -->
+  <div class="todo-list">
+    {% for todo in all_todos %}
+    <div class="card">
+      <div class="card-header">
+        <h2>{{todo.title}}</h2>
+      </div>
+      <div class="card-body">
+        <p>{{todo.description}}</p>
+      </div>
+      <div class="card-footer">
+        <span>{{todo.created_date}}</span>
+      </div>
+    </div>
+
+    {% endfor %}
+</main>
+{% endblock %}
+
+
+<!-- JavaScrip for the page -->
+{% block js %}
+<script src="{% static 'js/todo.js' %}'"></script>
 {% endblock %}
