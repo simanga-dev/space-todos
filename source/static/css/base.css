@@ -1,7 +1,8 @@
 *,
 *::before,
 *::after {
-  margin-top: 0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -13,7 +14,7 @@
 :root {
   --bg-color: rgba(16, 24, 47, 1);
   --fg-color: rgba(29, 39, 68, 1);
-  --white: rgba(239, 239, 239);
+  --white: rgba(239, 239, 239, 0.8);
   --accent-1: rgba(38, 127, 255, 1);
 }
 

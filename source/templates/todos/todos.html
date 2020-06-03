@@ -35,13 +35,47 @@
     {% for todo in all_todos %}
     <div class="card">
       <div class="card-header">
-        <h2>{{todo.title}}</h2>
+        <!-- NOTE: Link to mark complete-->
+        <a href="#" class="complete-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.41 40.41">
+            <path id="circle1" d="M336.05,352.11a20,20,0,1,1-20,19.976A19.977,19.977,0,0,1,336.05,352.11Z" transform="translate(-315.845 -351.905)" />
+          </svg>
+        </a>
+        <h2 class="todo-title">{{todo.title}}</h2>
+        <span class="user-name">By: Unknown</span>
+        <!-- NOTE: Toggle the content of Todos-->
+          <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.61 4.595">
+            <path id="up-arrow" d="M308.17,367.69l4.16-4.16,4.16,4.16" transform="translate(-308.025 -363.24)" />
+          </svg>
       </div>
       <div class="card-body">
         <p>{{todo.description}}</p>
       </div>
       <div class="card-footer">
-        <span>{{todo.created_date}}</span>
+        <div class="date-time">
+          <span>{{todo.created_date}}</span>
+        </div>
+        <div class="links">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17.278" height="20.493" viewBox="0 0 17.278 20.493">
+              <g id="edit" transform="translate(0 0)">
+                <path d="M4346.77,3208.1l3.2,3.2.461-.462-3.2-3.2Z" transform="translate(-4335.938 -3204.869)" />
+                <path d="M4416.346,3106.647l-2.379-2.38a.588.588,0,0,0-.426-.177.57.57,0,0,0-.39.177l-1.351,1.314,3.233,3.2,1.313-1.314a.6.6,0,0,0,0-.818h0Z" transform="translate(-4399.228 -3104.09)" />
+                <path d="M3976.921,3242.17h0l-8.56,9.128a.771.771,0,0,0-.142.213l-1.064,3.516c0,.071-.035.142-.035.213h0a.571.571,0,0,0,.178.39.683.683,0,0,0,.426.142.319.319,0,0,0,.177-.036l3.445-1.278a.573.573,0,0,0,.249-.142l8.56-9.092-3.233-3.053Z" transform="translate(-3966.444 -3238.476)" />
+                <path d="M4379.969,3176.271l3.2,3.2.463-.462-3.2-3.2Z" transform="translate(-4368.249 -3173.891)" />
+                <path d="M3941.87,3814.557h16.8v-1.528h-16.8Z" transform="translate(-3941.87 -3794.064)" />
+              </g>
+            </svg>
+          </a>
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15.731" height="21.106" viewBox="0 0 15.731 21.106">
+              <g id="delete" opacity="0.85">
+                <path d="M74.751,114.417a1.062,1.062,0,0,0,1.061,1.018h9.916a1.062,1.062,0,0,0,1.061-1.018L87.5,99.468H74.043Zm8.262-11.236a.431.431,0,0,1,.431-.431h.69a.432.432,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431Zm-3.02,0a.431.431,0,0,1,.431-.431h.69a.431.431,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431v-8.541Zm-3.02,0a.431.431,0,0,1,.431-.431h.69a.431.431,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431Z" transform="translate(-72.905 -94.329)" />
+                <path d="M67.08,1.087H62.506V.222A.222.222,0,0,0,62.283,0h-4.8a.222.222,0,0,0-.222.222v.865H52.683a.667.667,0,0,0-.667.667V3.848H67.747V1.754A.667.667,0,0,0,67.08,1.087Z" transform="translate(-52.016 0)" />
+              </g>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
 

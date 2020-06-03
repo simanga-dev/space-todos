@@ -1,3 +1,7 @@
+@font-face {
+  font-family: OpenSansLight;
+  src: url(../fonts/Open_Sans/OpenSans-Light.ttf);
+}
 .container {
   width: 100%;
   max-width: 62.5rem;
@@ -59,7 +63,7 @@
 .form-control.input-title label,
 .form-control.input-descrip label {
   position: absolute;
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
   display: none;
   left: 1em;
 }
@@ -74,7 +78,7 @@
 .form-control.input-descrip textarea {
   color: var(--white);
   border-radius: 6px;
-  font-size: 0.875rem;
+  /* font-size: 0.875rem; */
   padding: 1em;
   background-color: var(--fg-color);
   display: block;
@@ -84,7 +88,8 @@
 .form-control.input-title input::placeholder,
 .form-control.input-descrip textarea::placeholder {
   text-transform: capitalize;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
+  font-size: 1rem;
   font-family: OpenSans;
   opacity: 0.28;
 }
@@ -127,5 +132,98 @@
   position: fixed;
   top: 10rem;
   height: 100%;
+  right: 0;
+  left: 0;
   overflow: auto;
+  padding-bottom: 10rem;
+}
+.todos-list .card {
+  background-color: var(--fg-color);
+  color: var(--white);
+  max-width: 45rem;
+  margin: 0 auto 2rem auto;
+  border-radius: 8px;
+  padding: 1em 1em;
+}
+.card .card-header {
+  display: grid;
+  grid-template-columns: 4rem 1fr 4rem;
+  padding-bottom: 0.5em;
+  grid-column-gap: 0.5em;
+  grid-template-rows: repeat(2, 1fr);
+}
+.card .card-header svg {
+  stroke: var(--white);
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke-width: 0.41;
+  stroke-miterlimit: 2.613;
+  fill-rule: evenodd;
+}
+.card-header .complete-link {
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+  justify-self: center;
+  align-self: center;
+}
+.card-header .todo-title {
+  grid-column: 2 / 3;
+  grid-row: 1/ 2;
+
+  font-size: 1.25rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+.card-header .user-name {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  font-family: OpenSansLight;
+
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+.card-header .arrow {
+  grid-column: 3 / -1;
+  grid-row: 1 / -1;
+  justify-self: center;
+  align-self: center;
+  opacity: 0.6;
+}
+
+.card .card-body {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: calc(100% + 2rem);
+  transform: translateX(-1rem);
+  font-size: 0.875rem;
+  padding: 2em 1.5em;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.card .card-footer {
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 3.875rem;
+}
+.card-footer .links {
+  /* align-self: flex-end; */
+  /* transform: translateY(10%); */
+}
+.card-footer .links a {
+  display: inline-block;
+}
+.card-footer .links a:last-child {
+  margin-left: 1em;
+}
+.card-footer .links svg {
+  display: inline-block;
+  fill: var(--white);
+  fill-rule: evenodd;
+}
+.card-footer .date-time {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  border-radius: 4px;
 }
