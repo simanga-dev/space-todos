@@ -6,25 +6,32 @@
 <!-- main content of the page-->
 {% block content %}
 <main class="container">
-
+<div class="page-overlay"></div>
     <!-- Todo form -->
   <div class="todo-form">
-    <form method="POST" action="">
+    <form id="todo-form" class="form-container " method="POST" action="">
       {% csrf_token%}
-      <input type="text" name="title" placeholder="Todo Tittle" />
-      <textarea
-        name="description"
-        placeholder="Description of todos"
-        cols="30"
-        rows="10"
-      ></textarea>
+      <div class="form-control input-title">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter new Todo Title" />
+      </div>
+      <div class="form-control input-descrip">
+        <label for="descrip">Description:</label>
+        <textarea
+          id="descrip"
+          name="description"
+          placeholder="Description"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
       <button type="submit">Add</button>
     </form>
   </div>
 
 
   <!-- A list of all the todos  -->
-  <div class="todo-list">
+  <div class="todos-list">
     {% for todo in all_todos %}
     <div class="card">
       <div class="card-header">
@@ -45,5 +52,5 @@
 
 <!-- JavaScrip for the page -->
 {% block js %}
-<script src="{% static 'js/todo.js' %}'"></script>
+    <script src="{% static 'js/todos.js' %}"></script>
 {% endblock %}
