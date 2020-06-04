@@ -9,11 +9,11 @@
 <div class="page-overlay"></div>
     <!-- Todo form -->
   <div class="todo-form">
-    <form id="todo-form" class="form-container " method="POST" action="">
+    <form id="todo-form" class="form-container " method="POST" action="{% url 'todos' %}">
       {% csrf_token%}
       <div class="form-control input-title">
         <label for="title">Title:</label>
-        <input type="text" id="title" placeholder="Enter new Todo Title" />
+        <input name="title" type="text" id="title" placeholder="Enter new Todo Title" />
       </div>
       <div class="form-control input-descrip">
         <label for="descrip">Description:</label>
@@ -56,7 +56,7 @@
           <span>{{todo.created_date}}</span>
         </div>
         <div class="links">
-          <a href="#">
+          <a href="{% url 'delete' todo.id %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="17.278" height="20.493" viewBox="0 0 17.278 20.493">
               <g id="edit" transform="translate(0 0)">
                 <path d="M4346.77,3208.1l3.2,3.2.461-.462-3.2-3.2Z" transform="translate(-4335.938 -3204.869)" />
@@ -67,7 +67,7 @@
               </g>
             </svg>
           </a>
-          <a href="#">
+          <a href="{% url 'delete' todo.id %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="15.731" height="21.106" viewBox="0 0 15.731 21.106">
               <g id="delete" opacity="0.85">
                 <path d="M74.751,114.417a1.062,1.062,0,0,0,1.061,1.018h9.916a1.062,1.062,0,0,0,1.061-1.018L87.5,99.468H74.043Zm8.262-11.236a.431.431,0,0,1,.431-.431h.69a.432.432,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431Zm-3.02,0a.431.431,0,0,1,.431-.431h.69a.431.431,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431v-8.541Zm-3.02,0a.431.431,0,0,1,.431-.431h.69a.431.431,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431Z" transform="translate(-72.905 -94.329)" />

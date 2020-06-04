@@ -43,10 +43,11 @@
   grid-gap: 0.875rem;
   grid-template-columns: 1fr 7rem;
   width: 100%;
+  padding: 8px;
   max-width: 45rem;
   margin: 0 auto;
   border-radius: 8px;
-  height: 2.8125rem;
+  height: 3.5rem;
   overflow: hidden;
   transition: all 0.3s ease;
   z-index: 10;
@@ -96,7 +97,6 @@
 .isForm-active {
   height: 100%;
   background-color: var(--fg-color);
-  padding: 8px;
 }
 .isForm-active .form-control label {
   display: inline-block;

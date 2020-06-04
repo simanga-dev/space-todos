@@ -10,9 +10,11 @@
   </head>
 
   <body>
-    {% block content %}
+    <!-- message component -->
+    {% include 'message.html' %}
+
     <!-- main content of the page -->
-    {% endblock %}
+    {% block content %} {% endblock %}
 
     <!-- link to javascrit -->
     <script src="{% static 'js/base.js' %}"></script>

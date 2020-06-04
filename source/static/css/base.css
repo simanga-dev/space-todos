@@ -10,17 +10,22 @@
   font-family: OpenSans;
   src: url(../fonts/Open_Sans/OpenSans-Regular.ttf);
 }
+@font-face {
+  font-family: OpenSansLight;
+  src: url(../fonts/Open_Sans/OpenSans-Light.ttf);
+}
 
 :root {
   --bg-color: rgba(16, 24, 47, 1);
   --fg-color: rgba(29, 39, 68, 1);
-  --white: rgba(239, 239, 239, 0.8);
+  --white: rgba(239, 239, 239, 0.7);
   --accent-1: rgba(38, 127, 255, 1);
 }
 
 body {
   font-family: OpenSans, Arial, Helvetica, sans-serif;
   background-color: var(--bg-color);
+  font-size: 0.875rem;
   color: var(--white);
   position: relative;
   padding: 0;
@@ -28,4 +33,76 @@ body {
   overflow: hidden;
   z-index: -2;
   height: 100vh;
+}
+
+@keyframes message-ani {
+  0% {
+    transform: scale3d(1, 0, 1);
+  }
+  5% {
+    transform: scale3d(1, 1, 1);
+  }
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes text-ani {
+  0% {
+    opacity: 0;
+  }
+  4% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+}
+@keyframes span-ani {
+  0% {
+    transform: scale3d(0, 1, 1);
+  }
+  5% {
+    transform: scale3d(0, 1, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.message {
+  font-family: OpenSansLight;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #445159;
+  padding: 2em;
+  display: inline-block;
+  width: 22.25rem;
+  opacity: 0.8;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow: hidden;
+  position: absolute;
+  top: 8%;
+  right: 4%;
+  transform-origin: top;
+  /* transform: scale3d(1, 1, 1); */
+  animation: message-ani 4s ease-out forwards;
+}
+
+.message p {
+  animation: text-ani 4s ease-out forwards;
+}
+.message span {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22.25rem;
+
+  height: 3px;
+  background-image: linear-gradient(to right, #201059, #00d3ff);
+  transform-origin: left;
+  animation: span-ani 4s ease-out forwards;
 }
