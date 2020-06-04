@@ -33,14 +33,37 @@
   <!-- A list of all the todos  -->
   <div class="todos-list">
     {% for todo in all_todos %}
-    <div class="card">
-      <div class="card-header">
-        <!-- NOTE: Link to mark complete-->
-        <a href="#" class="complete-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.41 40.41">
-            <path id="circle1" d="M336.05,352.11a20,20,0,1,1-20,19.976A19.977,19.977,0,0,1,336.05,352.11Z" transform="translate(-315.845 -351.905)" />
-          </svg>
-        </a>
+      {% if todo.isComplete %}
+        <div class="card card-complete">
+          <div class="card-header">
+            <!-- NOTE: Link to mark not complete-->
+            <a href="#" class="complete-link">
+              <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g id="complete" transform="translate(-606 -314)">
+                  <path d="M155.572,125.514a.9.9,0,1,0-1.327,1.206l4.553,4.944a.9.9,0,0,0,.633.3h.03a.821.821,0,0,0,.633-.272l11.518-11.487a.9.9,0,0,0-1.266-1.266l-10.855,10.824Z" transform="translate(457.694 198.345)" />
+                  <path d="M89.465,83.476a.888.888,0,0,0-.9.9A10.191,10.191,0,1,1,78.37,74.189a.9.9,0,0,0,0-1.809,12,12,0,1,0,12,12,.889.889,0,0,0-.9-.9Z" transform="translate(539.63 241.62)" />
+                </g>
+              </svg>
+            </a>
+        {% else %}
+        <div class="card card-not-complete">
+          <div class="card-header">
+            <!-- NOTE: Link to mark complete-->
+            <a href="#" class="not-complete-link">
+              <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g id="complete" transform="translate(-606 -314)">
+                  <path d="M155.572,125.514a.9.9,0,1,0-1.327,1.206l4.553,4.944a.9.9,0,0,0,.633.3h.03a.821.821,0,0,0,.633-.272l11.518-11.487a.9.9,0,0,0-1.266-1.266l-10.855,10.824Z" transform="translate(457.694 198.345)" />
+                  <path d="M89.465,83.476a.888.888,0,0,0-.9.9A10.191,10.191,0,1,1,78.37,74.189a.9.9,0,0,0,0-1.809,12,12,0,1,0,12,12,.889.889,0,0,0-.9-.9Z" transform="translate(539.63 241.62)" />
+                </g>
+              </svg>
+            </a>
+        {% endif %}
+
+
+
+
+
+
         <h2 class="todo-title">{{todo.title}}</h2>
         <span class="user-name">By: Unknown</span>
         <!-- NOTE: Toggle the content of Todos-->
@@ -53,7 +76,8 @@
       </div>
       <div class="card-footer">
         <div class="date-time">
-          <span>{{todo.created_date}}</span>
+          <span>{{todo.date_created}}</span>
+          <span>{{todo.time_created}}</span>
         </div>
         <div class="links">
           <a href="{% url 'delete' todo.id %}">

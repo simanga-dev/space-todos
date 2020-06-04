@@ -153,10 +153,10 @@
   grid-template-rows: repeat(2, 1fr);
 }
 .card .card-header svg {
-  stroke: var(--white);
+  /* stroke: var(--white); */
   width: 1.5rem;
   height: 1.5rem;
-  fill: none;
+  /* fill: none; */
   stroke-width: 0.41;
   stroke-miterlimit: 2.613;
   fill-rule: evenodd;
@@ -166,6 +166,9 @@
   grid-row: 1 / -1;
   justify-self: center;
   align-self: center;
+}
+.complete-link .complete-svg {
+  fill: var(--accent-1);
 }
 .card-header .todo-title {
   grid-column: 2 / 3;
