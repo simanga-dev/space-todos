@@ -20,6 +20,7 @@
   --fg-color: rgba(29, 39, 68, 1);
   --white: rgba(239, 239, 239, 0.7);
   --accent-1: rgba(38, 127, 255, 1);
+  --accent-2: #00d3ff;
 }
 
 body {
@@ -30,7 +31,7 @@ body {
   position: relative;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: -2;
   height: 100vh;
 }
@@ -76,17 +77,17 @@ body {
   font-family: OpenSansLight;
   color: rgba(255, 255, 255, 0.8);
   background-color: #445159;
-  padding: 2em;
+  padding: 1em;
   display: inline-block;
-  width: 22.25rem;
+  width: 80%;
   opacity: 0.8;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
   overflow: hidden;
   position: absolute;
-  top: 8%;
+  bottom: 10%;
   right: 4%;
-  transform-origin: top;
+  transform-origin: bottom;
   /* transform: scale3d(1, 1, 1); */
   animation: message-ani 4s ease-out forwards;
 }
@@ -97,12 +98,26 @@ body {
 .message span {
   display: inline-block;
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 22.25rem;
-
+  right: 0;
   height: 3px;
   background-image: linear-gradient(to right, #201059, #00d3ff);
   transform-origin: left;
   animation: span-ani 4s ease-out forwards;
+}
+@media only screen and (min-width: 26rem) {
+  .message {
+    padding: 2em;
+    width: 22.25rem;
+    top: 8%;
+    transform-origin: top;
+    bottom: auto;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .message span {
+    top: 0;
+    bottom: auto;
+  }
 }

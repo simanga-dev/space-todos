@@ -11,12 +11,10 @@ def todos(request):
         if form.is_valid():
             form.save()
             messages.success(request, ("Todo successful created"))
-
-            # return HttpResponse("todos was added")
             return redirect('todos')
         else:
             messages.error(request, ("Please provide all information"))
-            return HttpResponse("inavlid form")
+            return redirect('todos')
 
     if request.method == 'GET':
         all_todos = Todo.objects.all
@@ -25,6 +23,20 @@ def todos(request):
 def delete(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.delete()
-    messages.success(request, ("Todo has been deleted!"))
-    # return redirect('todos')
-    return HttpResponse("Todo has been deleted")
+    messages.success(request, (f'{todo.title} has been deleted'))
+    return redirect('todos')
+    
+
+def isComplete(request, todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    # todo.isComplete ? todo.isComplete = False : todo.isComplete = True
+    if (todo.isComplete):
+        todo.isComplete = False
+        messages.success(request, (f'{todo.title} has been marked not complete'))
+    else:
+        todo.isComplete = True
+        messages.success(request, (f'{todo.title} has been marked complete'))
+    
+    todo.save()
+
+    return redirect('todos')

@@ -129,61 +129,77 @@
 }
 
 .todos-list {
-  position: fixed;
+  /* position: fixed; */
   top: 10rem;
   height: 100%;
   right: 0;
   left: 0;
   overflow: auto;
   padding-bottom: 10rem;
+  padding: 0 0.5em;
 }
 .todos-list .card {
   background-color: var(--fg-color);
   color: var(--white);
-  max-width: 45rem;
+  max-width: 35rem;
   margin: 0 auto 2rem auto;
   border-radius: 8px;
   padding: 1em 1em;
+  /* transition: all 0.3s ease-out; */
+}
+.card-complete div.card-body,
+.card-complete .card-footer .date-time {
+  opacity: 0.2;
+}
+.todos-list .card-complete {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .card .card-header {
   display: grid;
-  grid-template-columns: 4rem 1fr 4rem;
+  grid-template-columns: 2.5rem 1fr 2rem;
   padding-bottom: 0.5em;
-  grid-column-gap: 0.5em;
+  /* grid-column-gap: ; */
   grid-template-rows: repeat(2, 1fr);
 }
 .card .card-header svg {
-  /* stroke: var(--white); */
-  width: 1.5rem;
-  height: 1.5rem;
-  /* fill: none; */
-  stroke-width: 0.41;
-  stroke-miterlimit: 2.613;
+  fill: var(--white);
+  transition: all 0.3s ease;
+  opacity: 0.8;
   fill-rule: evenodd;
 }
-.card-header .complete-link {
+.card-header .complete-link,
+.card-header .not-complete-link {
   grid-column: 1 / 2;
   grid-row: 1 / -1;
-  justify-self: center;
   align-self: center;
 }
-.complete-link .complete-svg {
+.card-header .complete-link svg {
   fill: var(--accent-1);
+}
+.card-header .not-complete-link:hover svg,
+.card-header .complete-link:hover svg,
+.card-header .arrow:hover,
+.card-footer .links a:hover svg {
+  fill: var(--accent-2);
 }
 .card-header .todo-title {
   grid-column: 2 / 3;
   grid-row: 1/ 2;
 
-  font-size: 1.25rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+  line-height: 1;
   font-weight: normal;
-  letter-spacing: 1px;
+}
+.card-complete .todo-title {
+  text-decoration: line-through;
 }
 .card-header .user-name {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   font-family: OpenSansLight;
 
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 300;
 }
 .card-header .arrow {
@@ -192,30 +208,53 @@
   justify-self: center;
   align-self: center;
   opacity: 0.6;
+  transition: all 0.3s ease;
 }
+.card-header .arrow.collapse {
+  transform: rotate(180deg);
+  fill: var(--accent-1);
+}
+/* @keyframes card-body-ani {
+  from {
+    transform: scale3d(1, 1, 1);
+    height: auto;
+  }
+  to {
+    transform: scale3d(1, 0, 1);
+    height: 0;
+  }
+} */
 
 .card .card-body {
   background-color: rgba(0, 0, 0, 0.2);
-  width: calc(100% + 2rem);
-  transform: translateX(-1rem);
+  width: calc(100% + 2em);
+  transform: translateX(-1em);
   font-size: 0.875rem;
-  padding: 2em 1.5em;
+  padding: 1em;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transform-origin: top;
+  transition: all 0.3s ease-out;
+}
+.card .card-body.hide {
+  /* transform: scale3d(1, 0, 1); */
+  display: none;
+  /* animation: card-body-ani 0.3s ease-out forwards; */
 }
 .card .card-footer {
-  padding: 0 1em;
   display: flex;
+  padding-top: 0.5em;
   justify-content: space-between;
-  align-items: flex-end;
-  height: 3.875rem;
-}
-.card-footer .links {
-  /* align-self: flex-end; */
-  /* transform: translateY(10%); */
+  /* display: flex;
+  align-items: center;
+  height: 3rem; */
 }
 .card-footer .links a {
   display: inline-block;
+  transform: scale(0.9);
+}
+.card-footer .links a svg {
+  transition: all 0.3s ease;
 }
 .card-footer .links a:last-child {
   margin-left: 1em;
@@ -225,8 +264,44 @@
   fill: var(--white);
   fill-rule: evenodd;
 }
-.card-footer .date-time {
+.card-footer .date-time span {
+  display: inline-block;
   background-color: rgba(0, 0, 0, 0.2);
+  font-size: 0.75rem;
+  font-family: OpenSansLight;
   padding: 5px 10px;
   border-radius: 4px;
+}
+
+@media only screen and (min-width: 26rem) {
+  .card-header .todo-title {
+    font-size: 1.125rem;
+  }
+  .todos-list .card {
+    grid-column-gap: 1em;
+    padding: 1em;
+  }
+  .todos-list .card .card-header {
+    grid-template-columns: 3.5rem 1fr 2rem;
+    padding-bottom: 1em;
+  }
+  .card-header .user-name {
+    font-size: 0.875rem;
+  }
+  .card-header .complete-link,
+  .card-header .not-complete-link {
+    justify-self: center;
+  }
+  .card .card-body {
+    padding: 1.5em;
+  }
+  .card .card-footer {
+    padding-top: 1em;
+  }
+  .card-footer .date-time span {
+    font-size: 0.875rem;
+  }
+  .card-footer .links a:last-child {
+    margin-left: 1.5em;
+  }
 }

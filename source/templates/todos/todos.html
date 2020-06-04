@@ -13,7 +13,7 @@
       {% csrf_token%}
       <div class="form-control input-title">
         <label for="title">Title:</label>
-        <input name="title" type="text" id="title" placeholder="Enter new Todo Title" />
+        <input required name="title" type="text" id="title" placeholder="Enter new Todo Title" />
       </div>
       <div class="form-control input-descrip">
         <label for="descrip">Description:</label>
@@ -23,6 +23,7 @@
           placeholder="Description"
           cols="30"
           rows="10"
+          required
         ></textarea>
       </div>
       <button type="submit">Add</button>
@@ -37,7 +38,7 @@
         <div class="card card-complete">
           <div class="card-header">
             <!-- NOTE: Link to mark not complete-->
-            <a href="#" class="complete-link">
+            <a href="{% url 'isComplete' todo.id %}" class="complete-link">
               <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <g id="complete" transform="translate(-606 -314)">
                   <path d="M155.572,125.514a.9.9,0,1,0-1.327,1.206l4.553,4.944a.9.9,0,0,0,.633.3h.03a.821.821,0,0,0,.633-.272l11.518-11.487a.9.9,0,0,0-1.266-1.266l-10.855,10.824Z" transform="translate(457.694 198.345)" />
@@ -49,28 +50,22 @@
         <div class="card card-not-complete">
           <div class="card-header">
             <!-- NOTE: Link to mark complete-->
-            <a href="#" class="not-complete-link">
-              <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <g id="complete" transform="translate(-606 -314)">
-                  <path d="M155.572,125.514a.9.9,0,1,0-1.327,1.206l4.553,4.944a.9.9,0,0,0,.633.3h.03a.821.821,0,0,0,.633-.272l11.518-11.487a.9.9,0,0,0-1.266-1.266l-10.855,10.824Z" transform="translate(457.694 198.345)" />
-                  <path d="M89.465,83.476a.888.888,0,0,0-.9.9A10.191,10.191,0,1,1,78.37,74.189a.9.9,0,0,0,0-1.809,12,12,0,1,0,12,12,.889.889,0,0,0-.9-.9Z" transform="translate(539.63 241.62)" />
-                </g>
-              </svg>
+            <a href="{% url 'isComplete' todo.id %}" class="not-complete-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 23.796">
+                <path id="not-complete" d="M102.84,82.369a10.19,10.19,0,1,1-10.19,10.19A10.192,10.192,0,0,1,102.84,82.369Zm12,10.089a12,12,0,1,0-12,11.9A11.949,11.949,0,0,0,114.84,92.458Z" transform="translate(-90.84 -80.56)"/>
+            </svg>
+
             </a>
         {% endif %}
 
 
-
-
-
-
         <h2 class="todo-title">{{todo.title}}</h2>
         <span class="user-name">By: Unknown</span>
-        <!-- NOTE: Toggle the content of Todos-->
-          <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8.61 4.595">
-            <path id="up-arrow" d="M308.17,367.69l4.16-4.16,4.16,4.16" transform="translate(-308.025 -363.24)" />
-          </svg>
-      </div>
+       <!-- NOTE: Toggle the content of Todos-->
+        <svg class="arrow"xmlns="http://www.w3.org/2000/svg" width="24" height="12" viewBox="0 0 24 12">
+            <path id="arrow1" d="M181.467,201.2a.713.713,0,0,1-.509.2.671.671,0,0,1-.689-.65.622.622,0,0,1,.135-.386l11.4-10.766a.75.75,0,0,1,1.016,0l11.21,10.584a.641.641,0,0,1,.037.958.687.687,0,0,1-.951.013l-10.3-9.727a.757.757,0,0,0-1.028.006C188.371,194.665,184.9,197.951,181.467,201.2Z" transform="translate(-180.27 -189.405)" />
+        </svg>
+        </div>
       <div class="card-body">
         <p>{{todo.description}}</p>
       </div>
@@ -81,23 +76,14 @@
         </div>
         <div class="links">
           <a href="{% url 'delete' todo.id %}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17.278" height="20.493" viewBox="0 0 17.278 20.493">
-              <g id="edit" transform="translate(0 0)">
-                <path d="M4346.77,3208.1l3.2,3.2.461-.462-3.2-3.2Z" transform="translate(-4335.938 -3204.869)" />
-                <path d="M4416.346,3106.647l-2.379-2.38a.588.588,0,0,0-.426-.177.57.57,0,0,0-.39.177l-1.351,1.314,3.233,3.2,1.313-1.314a.6.6,0,0,0,0-.818h0Z" transform="translate(-4399.228 -3104.09)" />
-                <path d="M3976.921,3242.17h0l-8.56,9.128a.771.771,0,0,0-.142.213l-1.064,3.516c0,.071-.035.142-.035.213h0a.571.571,0,0,0,.178.39.683.683,0,0,0,.426.142.319.319,0,0,0,.177-.036l3.445-1.278a.573.573,0,0,0,.249-.142l8.56-9.092-3.233-3.053Z" transform="translate(-3966.444 -3238.476)" />
-                <path d="M4379.969,3176.271l3.2,3.2.463-.462-3.2-3.2Z" transform="translate(-4368.249 -3173.891)" />
-                <path d="M3941.87,3814.557h16.8v-1.528h-16.8Z" transform="translate(-3941.87 -3794.064)" />
-              </g>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path id="edit-link" d="M252.728,250.112h0c.2-.168.486-.168.554,0a.361.361,0,0,1,0,.54l-4.584,4.684a.312.312,0,0,1-.511,0,.378.378,0,0,1,0-.567l4.541-4.657Zm1.781,1.718h0a.388.388,0,0,1,.52,0,.4.4,0,0,1,0,.576l-4.669,4.684a.371.371,0,0,1-.52,0,.467.467,0,0,1,0-.567Zm1.653,1.789h0a.327.327,0,0,1,.554,0,.361.361,0,0,1,0,.54l-4.669,4.657a.33.33,0,0,1-.52,0,.361.361,0,0,1,0-.54l4.635-4.657Zm-5.154-5.33a.491.491,0,0,1,.75,0,.686.686,0,0,1,0,.779l-5.2,5.162-4.507,8.359,2.3,2.364,8.247-4.516,5.154-5.268a.562.562,0,1,1,.775.815l-5.154,5.224-.162.071-15.02,8.332a.444.444,0,0,1-.332.1.233.233,0,0,1-.222-.1c-.162-.071-.162-.071-.23-.142a.386.386,0,0,1-.06-.23v-.106a.372.372,0,0,1,.06-.239l8.247-15.2.06-.168,5.291-5.233Zm-15.5,23.827h24v-1.487h-24Z" transform="translate(-235.51 -248.115)" />
             </svg>
           </a>
           <a href="{% url 'delete' todo.id %}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15.731" height="21.106" viewBox="0 0 15.731 21.106">
-              <g id="delete" opacity="0.85">
-                <path d="M74.751,114.417a1.062,1.062,0,0,0,1.061,1.018h9.916a1.062,1.062,0,0,0,1.061-1.018L87.5,99.468H74.043Zm8.262-11.236a.431.431,0,0,1,.431-.431h.69a.432.432,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431Zm-3.02,0a.431.431,0,0,1,.431-.431h.69a.431.431,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431v-8.541Zm-3.02,0a.431.431,0,0,1,.431-.431h.69a.431.431,0,0,1,.431.431v8.541a.431.431,0,0,1-.431.431h-.69a.431.431,0,0,1-.431-.431Z" transform="translate(-72.905 -94.329)" />
-                <path d="M67.08,1.087H62.506V.222A.222.222,0,0,0,62.283,0h-4.8a.222.222,0,0,0-.222.222v.865H52.683a.667.667,0,0,0-.667.667V3.848H67.747V1.754A.667.667,0,0,0,67.08,1.087Z" transform="translate(-52.016 0)" />
-              </g>
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18.236" height="24" viewBox="0 0 18.236 24">
+            <path id="delete-new" d="M82.125,128.13a1.231,1.231,0,0,0,1.23-1.18l.825-17.329h-15.6l.821,17.33a1.231,1.231,0,0,0,1.23,1.179ZM67.26,108.591H85.5v-2.428a.773.773,0,0,0-.773-.773h-5.3v-1h0a.257.257,0,0,0-.256-.257H73.6a.258.258,0,0,0-.256.257v1H68.033a.773.773,0,0,0-.773.773Zm10.472,5.8a.5.5,0,0,0-.5-.5h-.8a.5.5,0,0,0-.5.5h0v9.9a.5.5,0,0,0,.5.5h.8a.5.5,0,0,0,.5-.5Zm-4.8-.044a.5.5,0,0,0-.5-.5h-.8a.5.5,0,0,0-.5.5v9.9a.5.5,0,0,0,.5.5h.8a.5.5,0,0,0,.5-.5v-9.9Zm7.3-.043v9.9a.5.5,0,0,0,.5.5h.8a.5.5,0,0,0,.5-.5v-9.9a.5.5,0,0,0-.5-.5h-.8A.5.5,0,0,0,80.232,114.3Z" transform="translate(-67.26 -104.13)" />
+          </svg>
           </a>
         </div>
       </div>
