@@ -8,12 +8,11 @@
 <main class="container">
 <div class="page-overlay"></div>
     <!-- Todo form -->
-  <div class="todo-form">
     <form id="todo-form" class="form-container " method="POST" action="{% url 'todos' %}">
       {% csrf_token%}
       <div class="form-control input-title">
         <label for="title">Title:</label>
-        <input required name="title" type="text" id="title" placeholder="Enter new Todo Title" />
+      <input autocomplete=false required name="title" type="text" id="title" placeholder="Enter new Todo Title" />
       </div>
       <div class="form-control input-descrip">
         <label for="descrip">Description:</label>
@@ -22,14 +21,12 @@
           name="description"
           placeholder="Description"
           cols="30"
-          rows="10"
+          rows="5"
           required
         ></textarea>
       </div>
       <button type="submit">Add</button>
     </form>
-  </div>
-
 
   <!-- A list of all the todos  -->
   <div class="todos-list">

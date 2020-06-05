@@ -11,15 +11,15 @@ arrowBtn.addEventListener("click", (e) => {
   arrowBtn.classList.toggle("collapse");
 });
 
-titleInput.addEventListener("focus", (e) => {
-  form.classList.add("isForm-active");
-  overlay.classList.add("active");
-});
-overlay.addEventListener("click", (e) => {
-  form.classList.remove("isForm-active");
-  overlay.classList.remove("active");
-});
+// titleInput.addEventListener("focus", (e) => {
+//   form.classList.add("isForm-active");
+//   overlay.classList.add("active");
+// });
+// overlay.addEventListener("click", (e) => {
+//   form.classList.remove("isForm-active");
+//   overlay.classList.remove("active");
+// });
 
-document.addEventListener("click", (e) => {
-  // console.log(e.target);
-});
+// document.addEventListener("click", (e) => {
+//   // console.log(e.target);
+// });
