@@ -10,14 +10,22 @@
   </head>
 
   <body>
-    <!-- message component -->
-    {% include 'message.html' %}
+    <main>
+      <!-- message component -->
+      {% include 'message.html' %}
 
-    <!-- main content of the page -->
-    {% block content %} {% endblock %}
-
-    <!-- link to javascrit -->
-    <script src="{% static 'js/base.js' %}"></script>
-    {% block js %} {% endblock %}
+      <!-- main content of the page -->
+      {% block content %} {% endblock %}
+      <!-- Lorem, ipsum dolor sit amet consectetur
+      adipisicing elit. Corporis pariatur, iste, neque assumenda exercitationem
+      maiores odio at, nemo alias maxime quisquam! Explicabo libero fuga illo
+      voluptates ratione dignissimos, consectetur nam dolor dolore, repellat
+      facere, iure nulla! At doloremque facere vitae, aliquid sunt, eveniet
+      animi vel corrupti repellat quos culpa fugit, cumque in voluptatum fuga
+      esse assumenda. Facilis blanditiis tempora esse! -->
+      <!-- link to javascrit -->
+      <script src="{% static 'js/base.js' %}"></script>
+      {% block js %} {% endblock %}
+    </main>
   </body>
 </html>

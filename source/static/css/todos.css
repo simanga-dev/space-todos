@@ -10,12 +10,8 @@
   box-shadow: 0 30px 58px rgba(0, 0, 0, 0.25);
   padding: 2em 0;
   z-index: -1;
-  /* position: fixed; */
   top: 5rem;
   left: 50%;
-  /* height: calc(100vh - 5rem); */
-  /* transform: translate3d(-50%, 0, 0); */
-  /* transform: translate3d(-50%, 0, 0); */
 }
 @media only screen and (min-width: 26rem) {
   .container {
@@ -41,24 +37,18 @@
 .form-container {
   position: absolute;
   display: grid;
-  /* grid-gap: 0.875rem; */
   background-color: var(--bg-color);
   grid-template-columns: 1fr 7rem;
   width: calc(100% - 1em);
   padding-top: 2px;
-  /* opacity: 0.6; */
   max-width: 35rem;
-  /* margin: 0 0.5em; */
   border-radius: 8px;
   right: 50%;
-  height: 2.875rem;
+  height: var(--form-height);
   overflow: hidden;
   transform: translate3d(50%, 0, 0);
   transition: all 0.3s ease;
   z-index: 10;
-}
-.form-control {
-  /* position: relative; */
 }
 .form-control.input-title {
   grid-column: 1 / -1;
@@ -67,12 +57,6 @@
 .form-control.input-descrip {
   grid-column: 1 / -1;
   grid-row: 2 / 3;
-}
-.form-control.input-title label,
-.form-control.input-descrip label {
-  /* font-size: 0.875rem; */
-  /* display: none; */
-  /* left: 1em; */
 }
 .form-control.input-title label {
   position: absolute;
@@ -115,28 +99,6 @@
   font-family: OpenSans;
   opacity: 0.28;
 }
-.isForm-active {
-  height: 100%;
-  background-color: var(--fg-color);
-}
-.isForm-active .form-control label {
-  display: inline-block;
-}
-.isForm-active .form-control.input-title input {
-  padding-left: 4em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.125);
-}
-.isForm-active .form-control.input-descrip textarea {
-  padding-left: 7em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.125);
-}
-.isForm-active .form-control.input-descrip textarea:focus {
-  padding-left: 7em;
-  border-bottom: 1px solid rgba(38, 127, 255, 0.5);
-}
-.isForm-active .form-control.input-title input:focus {
-  border-bottom: 1px solid rgba(38, 127, 255, 0.5);
-}
 
 .form-container button {
   display: block;
@@ -152,27 +114,26 @@
   font-size: 1rem;
 }
 
-.todos-list {
+.todo-list {
   height: 100%;
   right: 0;
   left: 0;
   overflow: auto;
   padding: 5rem 0.5em;
 }
-.todos-list .card {
+.todo-list .card {
   background-color: var(--fg-color);
   color: var(--white);
   max-width: 35rem;
   margin: 0 auto 2rem auto;
   border-radius: 8px;
   padding: 1em 1em;
-  /* transition: all 0.3s ease-out; */
 }
 .card-complete div.card-body,
 .card-complete .card-footer .date-time {
   opacity: 0.2;
 }
-.todos-list .card-complete {
+.todo-list .card-complete {
   background-color: rgba(0, 0, 0, 0.1);
 }
 .card .card-header {
@@ -199,14 +160,13 @@
 }
 .card-header .not-complete-link:hover svg,
 .card-header .complete-link:hover svg,
-.card-header .arrow:hover,
+.card-header expand-btn:hover,
 .card-footer .links a:hover svg {
   fill: var(--accent-2);
 }
 .card-header .todo-title {
   grid-column: 2 / 3;
   grid-row: 1/ 2;
-
   font-size: 1rem;
   text-transform: capitalize;
   line-height: 1;
@@ -219,11 +179,10 @@
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   font-family: OpenSansLight;
-
   font-size: 0.75rem;
   font-weight: 300;
 }
-.card-header .arrow {
+.card-header expand-btn {
   grid-column: 3 / -1;
   grid-row: 1 / -1;
   justify-self: center;
@@ -231,7 +190,7 @@
   opacity: 0.6;
   transition: all 0.3s ease;
 }
-.card-header .arrow.collapse {
+.card-header expand-btn.collapse {
   transform: rotate(180deg);
   fill: var(--accent-1);
 }
@@ -247,18 +206,10 @@
   transform-origin: top;
   transition: all 0.3s ease-out;
 }
-.card .card-body.hide {
-  /* transform: scale3d(1, 0, 1); */
-  display: none;
-  /* animation: card-body-ani 0.3s ease-out forwards; */
-}
 .card .card-footer {
   display: flex;
   padding-top: 0.5em;
   justify-content: space-between;
-  /* display: flex;
-  align-items: center;
-  height: 3rem; */
 }
 .card-footer .links a {
   display: inline-block;
@@ -303,11 +254,11 @@
     width: 90%;
     height: 96%;
   }
-  .todos-list .card {
+  .todo-list .card {
     grid-column-gap: 1em;
     padding: 1em;
   }
-  .todos-list .card .card-header {
+  .todo-list .card .card-header {
     grid-template-columns: 3.5rem 1fr 2rem;
     padding-bottom: 1em;
   }

@@ -21,6 +21,7 @@
   --white: rgba(239, 239, 239, 0.7);
   --accent-1: rgba(38, 127, 255, 1);
   --accent-2: #00d3ff;
+  --form-height: 2.875rem;
 }
 
 body {
@@ -31,7 +32,6 @@ body {
   position: relative;
   padding: 0;
   margin: 0;
-  /* overflow: hidden; */
   z-index: -2;
   height: 100vh;
 }
