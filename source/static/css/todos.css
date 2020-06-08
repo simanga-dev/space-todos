@@ -19,21 +19,36 @@
     width: 95%;
   }
 }
-.page-overlay {
-  background-color: rgba(255, 255, 255, 0.25);
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+.overlay {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 10;
+  left: 50%;
+  width: 10rem;
+  height: 10rem;
+  transform: translateX(-50%) scale3d(1, 1, 1);
+  background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  transition: all 5s ease !important;
-  transform: scale(2);
 }
-.page-overlay.active {
+@keyframes overlay-ani {
+  0% {
+    transform: translateX(-50%) scale3d(1, 1, 1);
+    opacity: 0;
+  }
+  15% {
+    transform: translateX(-50%) scale3d(1, 1, 1);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) scale3d(20, 20, 1);
+    opacity: 1;
+  }
+}
+.overlay.active {
   display: block;
-  z-index: 1;
+  opacity: 0;
+  animation: overlay-ani 1s ease-out forwards;
 }
-
 .form-container {
   position: absolute;
   display: grid;
@@ -47,8 +62,25 @@
   height: var(--form-height);
   overflow: hidden;
   transform: translate3d(50%, 0, 0);
-  transition: all 0.3s ease;
+  transition: all 3s ease;
   z-index: 10;
+}
+@keyframes form-ani {
+  0% {
+    height: 2.875rem;
+  }
+  20% {
+    height: 12.875rem;
+  }
+  100% {
+    height: 12.875rem;
+  }
+}
+.form-container.active {
+  --form-height: 12.8125rem;
+
+  transition: all 3s ease;
+  animation: form-ani 1s ease-out forwards;
 }
 .form-control.input-title {
   grid-column: 1 / -1;
@@ -129,6 +161,11 @@
   border-radius: 8px;
   padding: 1em 1em;
 }
+.card button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 .card-complete div.card-body,
 .card-complete .card-footer .date-time {
   opacity: 0.2;
@@ -161,6 +198,7 @@
 .card-header .not-complete-link:hover svg,
 .card-header .complete-link:hover svg,
 .card-header expand-btn:hover,
+.card button:hover svg,
 .card-footer .links a:hover svg {
   fill: var(--accent-2);
 }
@@ -211,7 +249,8 @@
   padding-top: 0.5em;
   justify-content: space-between;
 }
-.card-footer .links a {
+.card-footer .links a,
+.card button {
   display: inline-block;
   transform: scale(0.9);
 }

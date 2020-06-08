@@ -40,3 +40,19 @@ def isComplete(request, todo_id):
     todo.save()
 
     return redirect('todos')
+
+def editTodo(request, todo_id):
+    if request.method == 'POST':
+        todo = Todo.objects.get(pk=todo_id)
+
+        form = TodoForm(request.POST or None, instance=todo)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, (f'{todo.title} has been updated'))
+            return redirect('todos')
+        else: 
+            print(form.error)
+            messages.success(request, ('seems like the is error'))
+    else: 
+        return redirect('todos')

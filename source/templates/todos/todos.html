@@ -6,8 +6,8 @@
 <!-- main content of the page-->
 {% block content %}
 <div data-scroll="" class="container">
-  <div class="page-overlay"></div>
   <!-- Todo form -->
+  <div class="overlay"></div>
   <form id="todo-form" class="form-container" method="POST">
     {% csrf_token%}
     <div class="form-control input-title">
@@ -107,7 +107,7 @@
               <span>{{todo.time_created}}</span>
             </div>
             <div class="links">
-              <button class="edit-btn">
+              <button class="edit-btn" data-url="{% url 'editTodo' todo.id %}">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"

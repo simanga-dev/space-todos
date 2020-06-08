@@ -1,6 +1,10 @@
 const todoList = document.getElementById("todo-list");
 const todoForm = document.getElementById("todo-form");
 const titleInput = todoForm.querySelector("#title");
+const descripInput = todoForm.querySelector("#descrip");
+const overlay = document.querySelector(".overlay");
+
+let appState = "Normal";
 
 const MathUtils = {
   // map number x from range [a, b] to [c, d]
@@ -18,35 +22,77 @@ calcWinsize();
 // and recalculate on resize
 window.addEventListener("resize", calcWinsize);
 
+// Activate the Todo form
+let isFormActive = null;
+function deactivateForm() {
+  // this is cheating, I don't know what the fuck I am doing here
+  if (overlay.classList.length === 1) return;
+
+  console.log(overlay.classList.length);
+
+  titleInput.value = "";
+  descripInput.value = "";
+
+  if (overlay.classList == "overlay active") {
+    todoForm.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+  console.log("deactive is ");
+  appState = "Normal";
+  // isFormActive = false;
+}
+// Deactiave the todo form if Active
+function activateForm() {
+  // if (isFormActive === null) return;
+
+  todoForm.classList.add("active");
+  overlay.classList.add("active");
+  console.log("activate");
+}
+
 let docScroll;
 const getPageYScroll = () => {
   return (docScroll = window.pageYOffset || document.documentElement.scrollTop);
 };
-window.addEventListener("scroll", getPageYScroll);
+window.addEventListener("scroll", () => {
+  getPageYScroll();
+  deactivateForm();
+});
 
+// copy the content of the card to the form
+// check the url of the form to the specific card
+// Change the add button to a save button
 function handleEdit(elem) {
   titleInput.value = elem.querySelector(".todo-title").innerHTML;
-  todoForm.setAttribute("action", "{% url 'editTodos' %}");
-  let h = 12.8125;
-  let nh = parseFloat(
-    getComputedStyle(todoForm).getPropertyValue("--form-height"),
-    10
+  todoForm.setAttribute(
+    "action",
+    `${elem.querySelector(".edit-btn").dataset.url}`
   );
-  const update = () => {
-    let next = nh + 1;
-    let prev = MathUtils.lerp(nh, next, 0.1);
+  descripInput.value = elem.querySelector(".card-body p").innerHTML;
+  todoForm.querySelector("button").innerHTML = "Save";
 
-    todoForm.style.height = `${prev}rem`;
-    requestAnimationFrame(() => update());
-  };
+  // just for the animinaion
   const formObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.intersectionRatio > 0) {
-        update();
+      if (entry.intersectionRatio > 0 && isFormActive) {
+        activateForm();
+        console.log("inside");
+        isFormActive = false;
       }
     });
   });
   formObserver.observe(todoForm);
+}
+
+// Change the url to add url
+function handleAdd() {
+  if (appState === "Edit") return;
+
+  // just incase it has been change by handleEdit
+  todoForm.querySelector("button").innerHTML = "Add";
+
+  todoForm.setAttribute("action", "");
+  activateForm();
 }
 class SmoothScroll {
   constructor() {
@@ -115,7 +161,6 @@ class SmoothScroll {
     //   }
     // }
 
-    // console.log("hello");
     requestAnimationFrame(() => this.render());
   }
 }
@@ -128,11 +173,22 @@ todoList.addEventListener("click", (e) => {
     const card = e.target.closest(".card");
     window.scrollTo(0, 10);
     smothScrol.render();
-    handleEdit(card);
+
+    isFormActive = true;
+    appState = "Edit";
+    handleEdit(card, e.target);
   }
   if (e.target.closest(".expand-btn") || e.target.className === "expand-btn") {
-    const card = e.target.closest(".card");
-    handleEdit(card);
+    // const card = e.target.closest(".card");
+    // handleEdit(card);
   }
   return;
+});
+overlay.addEventListener("click", (e) => {
+  deactivateForm();
+});
+
+titleInput.addEventListener("focus", () => {
+  handleAdd();
+  // activateForm();
 });
