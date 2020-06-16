@@ -1,6 +1,6 @@
 {
   "python.pythonPath": "C:\\Users\\Henkho Dryza\\.virtualenvs\\django-todo-list-RM1Oav6X\\Scripts\\python.exe",
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "autopep8",
   "python.linting.pylintEnabled": false,
   "python.linting.enabled": true,
   "python.linting.banditEnabled": true

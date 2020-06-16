@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from .forms import UserRegisterForm
+# from django.contrib.auth.forms import UserCreationForm
 
 
 def accounts(request):
-    return(request, 'accounts/accounts.html')
+    form = UserRegisterForm()
+    return render(request, 'accounts/accounts.html', {'form': form})

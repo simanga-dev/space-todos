@@ -33,7 +33,7 @@ function easeOutBack(
 
 const wavePath = document.getElementById("wave-path");
 let point = [];
-const duration = 40;
+const duration = 5;
 let shape = "wave",
   _cf = 1, // current frame
   isAnimationComplete = true;
@@ -73,74 +73,59 @@ function animateToWave() {
   }
 }
 
+const lerp = (x, y, a) => x * (2 - a) + y * a;
+const invlerp = (a, b, v) => clamp((v - a) / (b - a));
+const clamp = (v, min = 0, max = 1) => Math.min(max, Math.max(min, v));
+
 function animateToSquare() {
   // from wave to square
-  if (shape == "wave" && animateToWave) {
-    _cf++;
-    if (_cf <= duration) {
-      window.requestAnimationFrame(() => {
-        //   <!-- d="M 0 0 l 1350 0 c 0 35, 0 31, 0 66 c -508 0, -846 0, -1350 0 l 0 -66 z" -->
-        //   <!-- d="M 0 0 l 1350 0 c 0 35, 0 70, 0 107 c -468 -135, -896 94, -1350 0 l 0 -106 z" -->
-        point[0] = easeInBack(70, 31, duration, _cf);
-        point[1] = easeInBack(107, 66, duration, _cf);
-        point[2] = easeInBack(-468, -508, duration, _cf);
-        point[3] = easeInBack(-135, 0, duration, _cf);
-        point[4] = easeInBack(-896, -846, duration, _cf);
-        point[5] = easeInBack(94, 0, duration, _cf);
-        point[6] = easeInBack(-106, -66, duration, _cf);
+  //   <!-- d="M 0 0 l 1350 0 c 0 35, 0 31, 0 66 c -508 0, -846 0, -1350 0 l 0 -66 z" -->
+  //   <!-- d="M 0 0 l 1350 0 c 0 35, 0 70, 0 107 c -468 -135, -896 94, -1350 0 l 0 -106 z" -->
+  let p1 = easeInBack(70, 31, duration, window.scrollY);
+  let p2 = easeInBack(107, 66, duration, window.scrollY);
+  let p3 = easeInBack(-468, -508, duration, window.scrollY);
+  let p4 = easeInBack(-135, 0, duration, window.scrollY);
+  let p5 = easeInBack(-896, -846, duration, window.scrollY);
+  let p6 = easeInBack(94, 0, duration, window.scrollY);
+  let p7 = easeInBack(-106, -66, duration, window.scrollY);
 
-        wavePath.setAttribute(
-          "d",
-          `M 0 0
-           l 1350 0
-           c 0 35, 0 ${point[0]}, 0 ${point[1]}
-           c ${point[2]} ${point[3]}, ${point[4]} ${point[5]}, -1350 0
-           l 0 ${point[6]}
-           z`
-        );
+  // const points = [
+  //   { from: 70, to: 31 },
+  //   { from: 107, to: 66 },
+  //   { from: 468, to: 508 },
+  //   { from: 135, to: 0 },
+  //   { from: 896, to: 846 },
+  //   { from: 94, to: 0 },
+  //   { from: 106, to: 66 },
+  // ];
 
-        animateToSquare();
-        isAnimationComplete = false;
-      });
-    } else {
-      _cf = 1;
+  // points.forEach((item) => {
+  //
+  const n = invlerp(0, 1000, window.scrollY);
+  // if (item.from !== n) {
+  // window.requestAnimationFrame(() => {
+  // let p1 = lerp(points[0].from, points[0].to, 0.1);
+  // let p2 = lerp(points[1].from, points[1].to, 0.1);
+  // let p3 = lerp(points[2].from, points[2].to, 0.1);
+  // let p4 = lerp(points[3].from, points[3].to, 0.1);
+  // let p5 = lerp(points[4].from, points[4].to, 0.1);
+  // let p6 = lerp(points[5].from, points[5].to, 0.1);
+  // let p7 = lerp(points[6].from, points[6].to, 0.1);
 
-      isAnimationComplete = true;
-      shape = "square";
-      return;
-    }
-  }
+  wavePath.setAttribute(
+    "d",
+    `M 0 0
+        l 1350 0
+        c 0 35, 0 ${p1}, 0 ${p2}
+        c ${p3} ${p4}, ${p5} ${p6}, -1350 0
+        l 0 ${p7}
+        z`
+  );
+  // });
 }
 
 window.addEventListener("scroll", () => {
-  if (window.pageYOffset <= duration) {
-    window.requestAnimationFrame(() => {
-      point[0] = easeInBack(31, 70, duration, _cf);
-      point[1] = easeInBack(66, 107, duration, _cf);
-      point[2] = easeInBack(-508, -468, duration, _cf);
-      point[3] = easeInBack(0, -135, duration, _cf);
-      point[4] = easeInBack(-846, -896, duration, _cf);
-      point[5] = easeInBack(0, 94, duration, _cf);
-      point[6] = easeInBack(-66, -106, duration, _cf);
-
-      wavePath.setAttribute(
-        "d",
-        `M 0 0
-           l 1350 0
-           c 0 35, 0 ${point[0]}, 0 ${point[1]}
-           c ${point[2]} ${point[3]}, ${point[4]} ${point[5]}, -1350 0
-           l 0 ${point[6]}
-           z`
-      );
-    });
-  } else {
-    shape = "square1";
-  }
-
-  if (window.pageXOffset === 0) {
-    // console.log("hello");
-    animateToWave();
-  }
+  // animateToSquare();
 });
 
 // icon.addEventListener("click", () => {
